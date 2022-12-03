@@ -1,4 +1,5 @@
 import 'app_state.dart';
+import 'profile/profile_reducer.dart';
 import 'reset_password/reset_password_reducer.dart';
 import 'signin/signin_reducer.dart';
 import 'signup/signup_reducer.dart';
@@ -8,5 +9,6 @@ AppState reducer(AppState state, dynamic action) {
     signupState: signupReducer(state.signupState, action),
     signinState: signinReducer(state.signinState, action),
     resetPasswordState: resetPasswordReducer(state.resetPasswordState, action),
+    profileState: profileReducer(state.profileState, action),
   );
 }
