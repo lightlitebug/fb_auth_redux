@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "300329179647",
+    "project_id": "fb-auth-redux",
+    "storage_bucket": "fb-auth-redux.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:300329179647:android:aca5fd8c627c09441defca",
+        "android_client_info": {
+          "package_name": "com.example.fb_auth_redux"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "300329179647-s5croslgpsvtcj64ve003nvphvdstqub.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBn-FKUzRG4bt1TOnCmb7jbrOy5AXeWypM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "300329179647-s5croslgpsvtcj64ve003nvphvdstqub.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "300329179647-ullh8mtdj1i14j2suttp7pd5u4upas9c.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fbAuthRedux"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
