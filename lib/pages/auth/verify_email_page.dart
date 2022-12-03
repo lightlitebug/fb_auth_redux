@@ -1,3 +1,4 @@
+import 'package:fb_auth_redux/pages/content/home_page.dart';
 import 'package:flutter/material.dart';
 
 class VerifyEmailPage extends StatefulWidget {
@@ -9,8 +10,13 @@ class VerifyEmailPage extends StatefulWidget {
 }
 
 class _VerifyEmailPageState extends State<VerifyEmailPage> {
+  bool emailVerified = true;
+
   @override
   Widget build(BuildContext context) {
+    if (emailVerified) {
+      return const HomePage();
+    }
     return Scaffold(
       appBar: AppBar(
         title: const Text('Email Verification'),

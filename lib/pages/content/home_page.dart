@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../models/custom_error.dart';
+import '../../repositories/auth_repository.dart';
+
 class HomePage extends StatelessWidget {
   static const String routeName = '/home';
   const HomePage({Key? key}) : super(key: key);
@@ -9,6 +12,26 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              try {
+                await AuthRepository.instance.signout();
+              } on CustomError catch (e) {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text(e.code),
+                      content: Text('plugin: ${e.plugin}\n\n${e.message}'),
+                    );
+                  },
+                );
+              }
+            },
+            icon: const Icon(Icons.exit_to_app),
+          ),
+        ],
       ),
       body: Center(
         child: Text('Home'),
