@@ -1,3 +1,4 @@
+import 'package:fb_auth_redux/utils/error_dialog.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/custom_error.dart';
@@ -18,15 +19,7 @@ class HomePage extends StatelessWidget {
               try {
                 await AuthRepository.instance.signout();
               } on CustomError catch (e) {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: Text(e.code),
-                      content: Text('plugin: ${e.plugin}\n\n${e.message}'),
-                    );
-                  },
-                );
+                errorDialog(context, e);
               }
             },
             icon: const Icon(Icons.exit_to_app),

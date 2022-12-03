@@ -51,6 +51,7 @@ class AuthRepository {
 
   Future<void> signout() async {
     try {
+      // throw 'Signout Error';
       await fbAuth.signOut();
     } catch (e) {
       throw handleException(e);

@@ -7,6 +7,7 @@ import '../../models/custom_error.dart';
 import '../../redux/app_state.dart';
 import '../../redux/signup/signup_action.dart';
 import '../../redux/signup/signup_state.dart';
+import '../../utils/error_dialog.dart';
 import '../../widgets/form_fields.dart';
 
 class SignupPage extends StatefulWidget {
@@ -86,6 +87,11 @@ class _SignupPageState extends State<SignupPage> {
                     distinct: true,
                     converter: (Store<AppState> store) =>
                         _ViewModel.fromStore(store),
+                    onWillChange: (_ViewModel? prev, _ViewModel current) {
+                      if (current.signupStatus == SignupStatus.failure) {
+                        errorDialog(context, current.error);
+                      }
+                    },
                     builder: (BuildContext context, _ViewModel vm) {
                       final status = vm.signupStatus;
 
