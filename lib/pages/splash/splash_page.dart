@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../../repositories/auth_repository.dart';
 import '../auth/signin_page.dart';
-import '../auth/signup_page.dart';
 import '../auth/verify_email_page.dart';
 
 class SplashPage extends StatelessWidget {

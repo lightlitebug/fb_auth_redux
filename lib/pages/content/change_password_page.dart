@@ -10,6 +10,7 @@ import '../../redux/change_password/change_password_state.dart';
 import '../../repositories/auth_repository.dart';
 import '../../utils/error_dialog.dart';
 import '../../widgets/form_fields.dart';
+import 'reauthenticate_page.dart';
 
 class ChangePasswordPage extends StatefulWidget {
   const ChangePasswordPage({Key? key}) : super(key: key);
@@ -79,7 +80,27 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                     onWillChange: (_ViewModel? prev, _ViewModel current) async {
                       if (current.changePasswordStatus ==
                           ChangePasswordStatus.failure) {
-                        errorDialog(context, current.error);
+                        if (current.error.code == 'requires-recent-login') {
+                          final scaffoldMessager =
+                              ScaffoldMessenger.of(context);
+                          final result = await Navigator.of(context).push(
+                            MaterialPageRoute(
+                              fullscreenDialog: true,
+                              builder: (context) {
+                                return const ReauthenticatePage();
+                              },
+                            ),
+                          );
+                          if (result == 'success') {
+                            scaffoldMessager.showSnackBar(
+                              const SnackBar(
+                                content: Text('Successfully reauthenticated'),
+                              ),
+                            );
+                          }
+                        } else {
+                          errorDialog(context, current.error);
+                        }
                       } else if (prev!.changePasswordStatus ==
                               ChangePasswordStatus.submitting &&
                           current.changePasswordStatus ==
