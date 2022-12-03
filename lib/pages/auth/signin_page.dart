@@ -137,14 +137,27 @@ class _SigninPageState extends State<SigninPage> {
                             child: TextButton(
                               onPressed: status == SigninStatus.submitting
                                   ? null
-                                  : () {
-                                      Navigator.of(context).push(
+                                  : () async {
+                                      final scaffoldMessenger =
+                                          ScaffoldMessenger.of(context);
+                                      final result =
+                                          await Navigator.of(context).push(
                                         MaterialPageRoute(
                                           builder: (context) {
                                             return const ResetPasswordPage();
                                           },
                                         ),
                                       );
+
+                                      if (result == 'success') {
+                                        scaffoldMessenger.showSnackBar(
+                                          const SnackBar(
+                                            content: Text(
+                                              'Password reset email has been sent',
+                                            ),
+                                          ),
+                                        );
+                                      }
                                     },
                               style: TextButton.styleFrom(
                                 foregroundColor: Colors.red,
