@@ -35,7 +35,7 @@ class SplashPage extends StatelessWidget {
         } else if (user != null) {
           return const VerifyEmailPage();
         } else {
-          return const SignupPage();
+          return const SigninPage();
         }
       },
     );

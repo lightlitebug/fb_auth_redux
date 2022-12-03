@@ -90,6 +90,11 @@ class _SignupPageState extends State<SignupPage> {
                     onWillChange: (_ViewModel? prev, _ViewModel current) {
                       if (current.signupStatus == SignupStatus.failure) {
                         errorDialog(context, current.error);
+                      } else if (prev!.signupStatus ==
+                              SignupStatus.submitting &&
+                          current.signupStatus == SignupStatus.success) {
+                        Navigator.of(context)
+                            .popUntil((route) => route.isFirst);
                       }
                     },
                     builder: (BuildContext context, _ViewModel vm) {
@@ -124,7 +129,7 @@ class _SignupPageState extends State<SignupPage> {
                               TextButton(
                                 onPressed: status == SignupStatus.submitting
                                     ? null
-                                    : () {},
+                                    : () => Navigator.of(context).pop(),
                                 style: TextButton.styleFrom(
                                   minimumSize: Size.zero,
                                   padding: EdgeInsets.zero,
